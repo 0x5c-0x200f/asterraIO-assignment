@@ -1,12 +1,9 @@
 const AWS = require('aws-sdk');
 const { Pool } = require('pg');
+const path = require('path');
 
 // Configure AWS SDK
-AWS.config.update({
-  region: "us-east-1",
-  accessKeyId: "AKIA3LET6AVJ7OT4NYQJ",
-  secretAccessKey: "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"
-})
+AWS.config.loadFromPath(path.join(__dirname, './aws-config.json'));
 
 const secretsManager = new AWS.SecretsManager();
 
