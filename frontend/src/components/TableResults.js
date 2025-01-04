@@ -303,7 +303,17 @@ const TableResults = () => {
                 </StyledTableCell>
                 <StyledTableCell align="right">{user.address}</StyledTableCell>
                 <StyledTableCell align="right">{user.phone_number}</StyledTableCell>
-                <StyledTableCell align="right">{user.hobbies.length > 1 ? user.hobbies.join(", ") : user.hobbies}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {
+                    user.hobbies ?
+                        user.hobbies.length > 1 ?
+                            user.hobbies.join(', ')
+                          :
+                            user.hobbies
+                      :
+                        ""
+                  }
+                </StyledTableCell>
                 <StyledTableCell component="td">
                   <div className="action-buttons-flex-container">
                     <Tooltip title={"Delete User " + user.first_name + " " + user.last_name} arrow>
