@@ -99,10 +99,10 @@ const AddHobbyForm = ({
         </div>
       </form>
       <div className="buttons-flex-hobby-container">
-          <Tooltip title="Click to Add new Hobby to User" arrow>
+          <Tooltip title="Click to associate a hobby to a user" arrow>
             <Button variant="contained" className="submit-btn" onClick={(e) => handleFormSubmit(e)}>Submit</Button>
           </Tooltip>
-          <Tooltip title="Click to close the Add Hobby Form" arrow>
+          <Tooltip title="Click to close the Hobby Form" arrow>
             <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
           </Tooltip>
       </div>

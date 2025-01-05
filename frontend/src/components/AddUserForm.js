@@ -140,10 +140,10 @@ const AddUserForm = ({
         />
       </form>
       <div className="buttons-flex-container">
-          <Tooltip title="Click to Add new User" arrow>
+          <Tooltip title="Click to add a user" arrow>
             <Button variant="contained" className="submit-btn" onClick={(e) => handleFormSubmit(e)}>Submit</Button>
           </Tooltip>
-          <Tooltip title="Click to close the Add User Form" arrow>
+          <Tooltip title="Click to close the User Form" arrow>
             <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
           </Tooltip>
       </div>
