@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import './AddUserForm.css';
-import Button from "@mui/material/Button";
+import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import FormLabel from '@mui/material/FormLabel';
+import FormHelperText from '@mui/material/FormHelperText';
 
 const AddUserForm = ({
   firstName,
@@ -86,7 +88,12 @@ const AddUserForm = ({
 
   return (
     <div className="main-user-container">
-      <h2>Add New User</h2>
+      <div className="user-form-label-container">
+        <FormLabel>User Form</FormLabel>
+      </div>
+      <div className="user-form-helper-text-container">
+        <FormHelperText>Here you can add a new user</FormHelperText>
+      </div>
       <form>
         <TextField
           variant="outlined"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './AddHobbyForm.css'; // Import the styles
-import { Tooltip, Button, TextField, FormControl, InputLabel, MenuItem, Select, OutlinedInput } from '@mui/material';
+import { FormHelperText, FormLabel, Tooltip, Button, TextField, FormControl, InputLabel, MenuItem, Select, OutlinedInput } from '@mui/material';
 
 const AddHobbyForm = ({
   users,
@@ -56,7 +56,12 @@ const AddHobbyForm = ({
 
   return (
     <div className="main-hobby-container">
-      <h2>Add Hobby</h2>
+      <div className="hobby-form-label-container">
+        <FormLabel>Hobby Form</FormLabel>
+      </div>
+      <div className="hobby-form-helper-text-container">
+        <FormHelperText>Associate a hobby to a user</FormHelperText>
+      </div>
       <form>
         <FormControl sx={{ m: 1, minWidth: 80 }} error={userIdError}>
           <InputLabel>Users</InputLabel>

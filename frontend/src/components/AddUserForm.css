@@ -36,3 +36,10 @@ div.buttons-flex-container button.submit-btn {
   margin-right: 15px;
 }
 
+.user-form-label-container {
+  margin-top: 10px;
+}
+
+.user-form-helper-text-container {
+  margin-bottom: 10px;
+}
