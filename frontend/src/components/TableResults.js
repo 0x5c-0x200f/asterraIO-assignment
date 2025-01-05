@@ -11,6 +11,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 
 
@@ -39,6 +41,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const TableResults = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [statusSuccess, setStatusSuccess] = useState('');
   const [statusError, setStatusError] = useState('');
   const [showUserForm, setShowUserForm] = useState(false);
@@ -81,9 +84,11 @@ const TableResults = () => {
       switch (message.type) {
         case 'users_list':
           setData(message.data); // Initialize table data
+          setLoading(false);
           break;
         case 'new_user':
           setData((prevData) => [...prevData, message.data]); // Add new user
+          setLoading(false);
           break;
         case 'new_hobby':
           setData((prevData) =>
@@ -96,6 +101,7 @@ const TableResults = () => {
                 : user
             )
           ); // Add new hobby to the user
+          setLoading(false);
           break;
         default:
           console.warn('Unhandled WebSocket message type:', message.type);
@@ -119,11 +125,13 @@ const TableResults = () => {
 
   const handleUserAndHobbyDelete = async (id) => {
     try {
+      setLoading(true);
       const response = await fetch(`${window.location.protocol}//${window.location.hostname}:3000/users/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
         setData((prevData) => prevData.filter((item) => item.id !== id));
+        setLoading(false);
         handleSuccessStatus('User deleted successfully.');
         console.log('User deleted successfully.');
       } else {
@@ -151,6 +159,7 @@ const TableResults = () => {
   }
 
   try {
+      setLoading(true);
       const response = await fetch(`${window.location.protocol}//${window.location.hostname}:3000/users`, {
         method: 'POST',
         headers: {
@@ -172,6 +181,7 @@ const TableResults = () => {
         handleErrorStatus(`Error: ${errorData.message}`);
         console.error(`Error: ${errorData.message}`)
       }
+      setLoading(false);
   } catch (error) {
       handleErrorStatus(`Error: ${error.message}`);
       console.error(`Error: ${error.message}`)
@@ -190,6 +200,7 @@ const TableResults = () => {
   }
 
   try {
+      setLoading(true);
       const response = await fetch(`${window.location.protocol}//${window.location.hostname}:3000/hobbies`, {
         method: 'POST',
         headers: {
@@ -209,6 +220,7 @@ const TableResults = () => {
         handleErrorStatus(`Error: ${errorData.message}`)
         console.error(`Error: ${errorData.message}`);
       }
+      setLoading(false);
   } catch (error) {
       handleErrorStatus(`Error: ${error.message}`)
       console.error(`Error: ${error.message}`);
@@ -284,24 +296,55 @@ const TableResults = () => {
             </div>
           )
       }
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Full Name</StyledTableCell>
-              <StyledTableCell align="right">Address</StyledTableCell>
-              <StyledTableCell align="right">Phone Number</StyledTableCell>
-              <StyledTableCell align="right">Hobbies</StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              data.length === 0 ?
-                  <StyledTableRow>
-                    <StyledTableCell align="center">No Data</StyledTableCell>
-                  </StyledTableRow>
-                :
+      <TableContainer component={Paper} sx={{ marginTop: 2}}>
+        {
+          loading ? (
+              <Box sx={{ width: '100%' }}>
+                <LinearProgress />
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Full Name</StyledTableCell>
+                    <StyledTableCell align="right">Address</StyledTableCell>
+                    <StyledTableCell align="right">Phone Number</StyledTableCell>
+                    <StyledTableCell align="right">Hobbies</StyledTableCell>
+                    <StyledTableCell align="right"></StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                </TableBody>
+                </Table>
+              </Box>
+          ) : data.length === 0 ? (
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Full Name</StyledTableCell>
+                  <StyledTableCell align="right">Address</StyledTableCell>
+                  <StyledTableCell align="right">Phone Number</StyledTableCell>
+                  <StyledTableCell align="right">Hobbies</StyledTableCell>
+                  <StyledTableCell align="right"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell align="center">No Data</StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+              </Table>
+          ) : (
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Full Name</StyledTableCell>
+                  <StyledTableCell align="right">Address</StyledTableCell>
+                  <StyledTableCell align="right">Phone Number</StyledTableCell>
+                  <StyledTableCell align="right">Hobbies</StyledTableCell>
+                  <StyledTableCell align="right"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {
                   data.map((user) => (
                     <StyledTableRow key={user.id}>
                       <StyledTableCell component="th" scope="row">
@@ -335,9 +378,11 @@ const TableResults = () => {
                       </StyledTableCell>
                     </StyledTableRow>
                   ))
-            }
-          </TableBody>
-        </Table>
+                }
+              </TableBody>
+            </Table>
+          )
+        }
       </TableContainer>
     </div>
   );
