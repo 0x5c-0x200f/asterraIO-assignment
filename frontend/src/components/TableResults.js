@@ -311,76 +311,87 @@ const TableResults = () => {
                     <StyledTableCell align="right"></StyledTableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                </TableBody>
                 </Table>
               </Box>
           ) : data.length === 0 ? (
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Full Name</StyledTableCell>
-                  <StyledTableCell align="right">Address</StyledTableCell>
-                  <StyledTableCell align="right">Phone Number</StyledTableCell>
-                  <StyledTableCell align="right">Hobbies</StyledTableCell>
-                  <StyledTableCell align="right"></StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <StyledTableRow>
-                  <StyledTableCell align="center">No Data</StyledTableCell>
-                </StyledTableRow>
-              </TableBody>
-              </Table>
+              <Box sx={{ width: '100%' }}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Full Name</StyledTableCell>
+                    <StyledTableCell align="right">Address</StyledTableCell>
+                    <StyledTableCell align="right">Phone Number</StyledTableCell>
+                    <StyledTableCell align="right">Hobbies</StyledTableCell>
+                    <StyledTableCell align="right"></StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <StyledTableRow>
+                    <StyledTableCell
+                      align="center"
+                      colSpan={5}
+                      sx={{
+                        textAlign: 'center', height: '200px',
+                        color: 'gray', verticalAlign: 'middle'
+                      }}
+                    >
+                      No Data
+                    </StyledTableCell>
+                  </StyledTableRow>
+                </TableBody>
+                </Table>
+              </Box>
           ) : (
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Full Name</StyledTableCell>
-                  <StyledTableCell align="right">Address</StyledTableCell>
-                  <StyledTableCell align="right">Phone Number</StyledTableCell>
-                  <StyledTableCell align="right">Hobbies</StyledTableCell>
-                  <StyledTableCell align="right"></StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {
-                  data.map((user) => (
-                    <StyledTableRow key={user.id}>
-                      <StyledTableCell component="th" scope="row">
-                        {user.first_name + " " + user.last_name}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">{user.address}</StyledTableCell>
-                      <StyledTableCell align="right">{user.phone_number}</StyledTableCell>
-                      <StyledTableCell align="right">
-                        {
+              <Box sx={{ width: '100%' }}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Full Name</StyledTableCell>
+                    <StyledTableCell align="right">Address</StyledTableCell>
+                    <StyledTableCell align="right">Phone Number</StyledTableCell>
+                    <StyledTableCell align="right">Hobbies</StyledTableCell>
+                    <StyledTableCell align="right"></StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    data.map((user) => (
+                      <StyledTableRow key={user.id}>
+                        <StyledTableCell component="th" scope="row">
+                          {user.first_name + " " + user.last_name}
+                        </StyledTableCell>
+                        <StyledTableCell align="right">{user.address}</StyledTableCell>
+                        <StyledTableCell align="right">{user.phone_number}</StyledTableCell>
+                        <StyledTableCell align="right">
+                          {
 
-                          user.hobby ?
-                              user.hobby
-                            :
-                              user.hobbies ?
-                                  user.hobbies.join(', ')
-                                :
-                                  ""
-                        }
-                      </StyledTableCell>
-                      <StyledTableCell component="td">
-                        <div className="action-buttons-flex-container">
-                          <Tooltip title={"Delete User " + user.first_name + " " + user.last_name} arrow>
-                            <Button
-                                variant="contained"
-                                onClick={() => handleUserAndHobbyDelete(user.id)}
-                            >
-                              Delete
-                            </Button>
-                          </Tooltip>
-                        </div>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))
-                }
-              </TableBody>
-            </Table>
+                            user.hobby ?
+                                user.hobby
+                              :
+                                user.hobbies ?
+                                    user.hobbies.join(', ')
+                                  :
+                                    ""
+                          }
+                        </StyledTableCell>
+                        <StyledTableCell component="td">
+                          <div className="action-buttons-flex-container">
+                            <Tooltip title={"Delete User " + user.first_name + " " + user.last_name} arrow>
+                              <Button
+                                  variant="contained"
+                                  onClick={() => handleUserAndHobbyDelete(user.id)}
+                              >
+                                Delete
+                              </Button>
+                            </Tooltip>
+                          </div>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))
+                  }
+                </TableBody>
+              </Table>
+            </Box>
           )
         }
       </TableContainer>
