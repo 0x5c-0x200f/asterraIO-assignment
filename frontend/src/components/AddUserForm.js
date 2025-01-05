@@ -92,7 +92,7 @@ const AddUserForm = ({
         <FormLabel>User Form</FormLabel>
       </div>
       <div className="user-form-helper-text-container">
-        <FormHelperText>Here you can add a new user</FormHelperText>
+        <FormHelperText>Add a new user to the table</FormHelperText>
       </div>
       <form>
         <TextField
