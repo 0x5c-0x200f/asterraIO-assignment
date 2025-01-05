@@ -1,9 +1,5 @@
-import React, {useEffect} from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import AddUserForm from './AddUserForm';
-import AddHobbyForm from './AddHobbyForm';
+import React  from 'react';
 import TableResults from './TableResults';
-import './AppContainer.css'; // Optional: Add styles
 
 const AppContainer = () => {
   return (
