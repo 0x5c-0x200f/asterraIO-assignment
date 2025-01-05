@@ -296,39 +296,46 @@ const TableResults = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((user) => (
-              <StyledTableRow key={user.id}>
-                <StyledTableCell component="th" scope="row">
-                  {user.first_name + " " + user.last_name}
-                </StyledTableCell>
-                <StyledTableCell align="right">{user.address}</StyledTableCell>
-                <StyledTableCell align="right">{user.phone_number}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {
+            {
+              data.length === 0 ?
+                  <StyledTableRow>
+                    <StyledTableCell align="center">No Data</StyledTableCell>
+                  </StyledTableRow>
+                :
+                  data.map((user) => (
+                    <StyledTableRow key={user.id}>
+                      <StyledTableCell component="th" scope="row">
+                        {user.first_name + " " + user.last_name}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">{user.address}</StyledTableCell>
+                      <StyledTableCell align="right">{user.phone_number}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {
 
-                    user.hobby ?
-                        user.hobby
-                      :
-                        user.hobbies ?
-                            user.hobbies.join(', ')
-                          :
-                            ""
-                  }
-                </StyledTableCell>
-                <StyledTableCell component="td">
-                  <div className="action-buttons-flex-container">
-                    <Tooltip title={"Delete User " + user.first_name + " " + user.last_name} arrow>
-                      <Button
-                          variant="contained"
-                          onClick={() => handleUserAndHobbyDelete(user.id)}
-                      >
-                        Delete
-                      </Button>
-                    </Tooltip>
-                  </div>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+                          user.hobby ?
+                              user.hobby
+                            :
+                              user.hobbies ?
+                                  user.hobbies.join(', ')
+                                :
+                                  ""
+                        }
+                      </StyledTableCell>
+                      <StyledTableCell component="td">
+                        <div className="action-buttons-flex-container">
+                          <Tooltip title={"Delete User " + user.first_name + " " + user.last_name} arrow>
+                            <Button
+                                variant="contained"
+                                onClick={() => handleUserAndHobbyDelete(user.id)}
+                            >
+                              Delete
+                            </Button>
+                          </Tooltip>
+                        </div>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))
+            }
           </TableBody>
         </Table>
       </TableContainer>
