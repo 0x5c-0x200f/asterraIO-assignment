@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
 
 
@@ -241,7 +242,7 @@ const TableResults = () => {
 
   return (
     <div className="table-container">
-      <h2>User and Hobby Table</h2>
+      <DialogTitle >Users' Hobbies Table</DialogTitle>
       {
         statusSuccess ?
             // Display Success Message
