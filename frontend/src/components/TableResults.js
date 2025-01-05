@@ -305,13 +305,14 @@ const TableResults = () => {
                 <StyledTableCell align="right">{user.phone_number}</StyledTableCell>
                 <StyledTableCell align="right">
                   {
-                    user.hobbies ?
-                        user.hobbies.length > 1 ?
+
+                    user.hobby ?
+                        user.hobby
+                      :
+                        user.hobbies ?
                             user.hobbies.join(', ')
                           :
-                            user.hobbies
-                      :
-                        ""
+                            ""
                   }
                 </StyledTableCell>
                 <StyledTableCell component="td">
