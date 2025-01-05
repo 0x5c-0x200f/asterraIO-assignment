@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import './AddHobbyForm.css'; // Import the styles
-import { FormHelperText, FormLabel, Tooltip, Button, TextField, FormControl, InputLabel, MenuItem, Select, OutlinedInput } from '@mui/material';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import Tooltip from '@mui/material/Tooltip';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const AddHobbyForm = ({
   users,
